@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    background: linear-gradient(135deg, rgb(58, 30, 218), rgb(168, 9, 216));
+    background-attachment: fixed;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 0 0;
+}
+
+.container {
+    width: 600px;
+    padding: 30px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    box-shadow: 0 0 30px purple;
+    position: relative;
+}
+
+.main {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    position: relative;
+}
+
+input {
+    width: 60%;
+    height: 44px;
+    border: 0;
+    outline: 0;
+    padding: 0 20px;
+    border-bottom: 3px solid rgb(2, 111, 255);
+    font-size: 20px;
+}
+
+input:focus,
+input:valid {
+    border-bottom: 3px solid rgb(165, 14, 165);
+}
+
+.main button {
+    width: 150px;
+    height: 50px;
+    border: 2px solid rgb(2, 111, 255);
+    font-size: 20px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#get {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 10px 0;
+    font-size: 20px;
+    position: relative;
+}
+
+#get .getText {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px 12px;
+}
+
+#get .getText:nth-child(2n) {
+    background-color: rgb(252, 245, 189);
+}
+
+#get .text {
+    font-size: 20px;
+    width: 95%;
+    cursor: pointer;
+}
+
+#get .delete {
+    font-size: 25px;
+    border: 0;
+    outline: 0;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.line {
+    text-decoration: line-through;
+    color: rgb(214, 5, 5);
+}
+
+@media screen and (max-width:650px) {
+    .container {
+        width: 100%;
+        padding: 25px;
+    }
+    .main {
+        height: 40px;
+    }
+    input {
+        height: 38px;
+    }
+    .main button {
+        width: 100px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .main {
+        flex-direction: column;
+        height: 85px;
+    }
+    input {
+        width: 88%;
+        border: 3px solid #1857BB;
+    }
+    #push {
+        width: 100%;
+        border: 0;
+        outline: 0;
+    }
+}
