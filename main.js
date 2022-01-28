@@ -1,34 +1,63 @@
 let input = document.querySelector("#input");
-let push = document.querySelector("#push");
-let get = document.querySelector("#get");
+let button = document.querySelector("#push");
+let list = document.querySelector("#todosList");
 
-push.addEventListener("click", () => {
+var myList = [];
+var storage = window.localStorage;
+
+loadFromStorage();
+
+button.addEventListener("click", () => {
     var word = input.value.trim();
     if (word.length > 0) {
-        get.innerHTML += `
-        <div class="getText">
-            <p class="text">${word}</p>
-            <button class="delete">
-                <i class="fas fa-trash"></i>
-            </button> 
-        </div>   
-        `;
+        myList.push({
+            label: word,
+            isDone: false,
+        });
 
-        var currently = document.querySelectorAll(".delete");
-        var text = document.querySelectorAll(".text");
-
-        for (var i = 0; i < currently.length; i++) {
-            currently[i].onclick = function() {
-                this.parentNode.remove();
-            };
-        }
-
-        for (var i = 0; i < text.length; i++) {
-            text[i].onclick = function() {
-                this.classList.toggle("line");
-            };
-        }
+        refresh();
 
         input.value = "";
     }
 });
+
+function refresh() {
+    var html = "";
+    for (var index in myList) {
+        var item = myList[index];
+        html += `
+        <div class="getText">
+            <p onclick="toggleStatus(${index})" class="text ${(item.isDone ? "line" : "")}">${item.label}</p>
+            <button class="delete" onclick="deleteItem(${index})">
+                <i class="fas fa-trash"></i>
+            </button> 
+        </div>
+        `;
+    }
+
+    list.innerHTML = html;
+
+    storage.setItem("myList", JSON.stringify(myList));
+}
+
+function toggleStatus(index) {
+    myList[index].isDone = !myList[index].isDone;
+
+    refresh();
+}
+
+function deleteItem(index) {
+    myList.splice(index, 1);
+
+    refresh();
+}
+
+function loadFromStorage() {
+    var data = storage.getItem("myList");
+
+    if (data != null) {
+        myList = JSON.parse(data);
+
+        refresh();
+    }
+}
